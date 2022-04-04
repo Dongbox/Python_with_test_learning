@@ -1,7 +1,19 @@
 from selenium import webdriver
-
-browser = webdriver.Edge(r'C:\Program Files (x86)\Microsoft\edgedriver_win64\msedgedriver.exe')	#这里添加的是driver的绝对路径
-browser.get('http://localhost:8000')
+import unittest
 
 
-assert 'Django' in browser.title
+
+class NewVisitTestCase(unittest.TestCase):
+    def setUp(self):
+        self.browser = webdriver.Edge(r'C:\Program Files (x86)\Microsoft\edgedriver_win64\msedgedriver.exe')
+        self.browser.implicitly_wait(3)
+    def tearDown(self):
+        self.browser.quit()
+    
+    def test_can_start_a_list_and_retrieve_it_later(self):
+        self.browser.get('http://localhost:8000')
+        self.assertIn('To-Do', self.browser.title)
+        self.fail('Finish the test!')
+
+unittest.main(warnings='ignore')
+        
