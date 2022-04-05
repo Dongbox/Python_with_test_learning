@@ -1,10 +1,9 @@
 from selenium import webdriver
 import unittest
 from selenium.webdriver.common.keys import Keys
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
-
-class NewVisitTestCase(LiveServerTestCase):
+class NewVisitTestCase(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Edge(r'C:\Program Files (x86)\Microsoft\edgedriver_win64\msedgedriver.exe')
         self.browser.implicitly_wait(3)
